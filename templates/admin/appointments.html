@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Manage Appointments{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="dashboard-header">
+        <h1 class="dashboard-title"><i class="fas fa-calendar-check"></i> All Appointments</h1>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="mb-3">
+                <form method="GET" class="d-flex gap-2">
+                    <select class="form-select" name="status" onchange="this.form.submit()">
+                        <option value="">All Status</option>
+                        <option value="Booked" {% if status_filter == 'Booked' %}selected{% endif %}>Booked</option>
+                        <option value="Completed" {% if status_filter == 'Completed' %}selected{% endif %}>Completed</option>
+                        <option value="Cancelled" {% if status_filter == 'Cancelled' %}selected{% endif %}>Cancelled</option>
+                    </select>
+                </form>
+            </div>
+            {% if appointments %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Patient</th>
+                            <th>Doctor</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Reason</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for apt in appointments %}
+                        <tr>
+                            <td>{{ apt.id }}</td>
+                            <td>{{ apt.patient.user.full_name }}</td>
+                            <td>{{ apt.doctor.user.full_name }}</td>
+                            <td>{{ apt.appointment_date.strftime('%Y-%m-%d') }}</td>
+                            <td>{{ apt.appointment_time.strftime('%H:%M') }}</td>
+                            <td><span class="badge status-{{ apt.status.lower() }}">{{ apt.status }}</span></td>
+                            <td>{{ apt.reason or 'N/A' }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="text-muted text-center">No appointments found</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

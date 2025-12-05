@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Patient History{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="dashboard-header">
+        <h1 class="dashboard-title"><i class="fas fa-history"></i> Patient Medical History</h1>
+    </div>
+    <div class="card mb-3">
+        <div class="card-header">Patient Information</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Name:</strong> {{ patient.user.full_name }}</p>
+                    <p><strong>Email:</strong> {{ patient.user.email }}</p>
+                    <p><strong>Phone:</strong> {{ patient.user.phone or 'N/A' }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Gender:</strong> {{ patient.gender or 'N/A' }}</p>
+                    <p><strong>Blood Group:</strong> {{ patient.blood_group or 'N/A' }}</p>
+                    <p><strong>DOB:</strong> {{ patient.date_of_birth.strftime('%Y-%m-%d') if patient.date_of_birth else 'N/A' }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">Treatment History</div>
+        <div class="card-body">
+            {% if appointments %}
+            {% for apt in appointments %}
+            <div class="appointment-card">
+                <h5><i class="fas fa-calendar"></i> {{ apt.appointment_date.strftime('%B %d, %Y') }}</h5>
+                <p><strong>Doctor:</strong> {{ apt.doctor.user.full_name }}</p>
+                {% if apt.treatment %}
+                <p><strong>Diagnosis:</strong> {{ apt.treatment.diagnosis }}</p>
+                <p><strong>Prescription:</strong> {{ apt.treatment.prescription or 'N/A' }}</p>
+                <p><strong>Notes:</strong> {{ apt.treatment.notes or 'N/A' }}</p>
+                {% else %}
+                <p class="text-muted">No treatment details available</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+            {% else %}
+            <p class="text-muted text-center">No treatment history found</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,420 @@
+{% extends "base.html" %}
+{% block title %}Welcome - Hospital Management System{% endblock %}
+
+{% block content %}
+<!-- Unique Hero Section -->
+<section class="unique-hero">
+    <div class="hero-background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+    
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="hero-text-content">
+                    <span class="hero-tag">🏥 Healthcare Made Simple</span>
+                    <h1 class="unique-hero-title">
+                        Your Health,
+                        <span class="highlight-text">Our Priority</span>
+                    </h1>
+                    <p class="hero-description">
+                        Book appointments with expert doctors and manage your health records easily.
+                    </p>
+                    
+                    <div class="hero-action-buttons">
+                        <a href="{{ url_for('register') }}" class="btn-custom btn-primary-custom">
+                            <i class="fas fa-calendar-plus"></i>
+                            Book Appointment
+                        </a>
+                        <a href="{{ url_for('login') }}" class="btn-custom btn-secondary-custom">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Sign In
+                        </a>
+                    </div>
+                    <p class="hero-note">
+                        <small><i class="fas fa-info-circle"></i> New here? Register to book your first appointment</small>
+                    </p>
+                    
+                    <div class="hero-trust-badges">
+                        <div class="trust-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>100% Secure</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="fas fa-clock"></i>
+                            <span>24/7 Available</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="fas fa-users"></i>
+                            <span>Expert Doctors</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="hero-visual">
+                    <div class="visual-card card-doctor">
+                        <div class="card-icon">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>6+ Specialists</h4>
+                            <p>Expert Medical Care</p>
+                        </div>
+                    </div>
+                    
+                    <div class="visual-card card-appointment">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>Instant Booking</h4>
+                            <p>Schedule Anytime</p>
+                        </div>
+                    </div>
+                    
+                    <div class="visual-card card-health">
+                        <div class="card-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>Health Records</h4>
+                            <p>Digital & Secure</p>
+                        </div>
+                    </div>
+                    
+                    <div class="center-illustration">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Booking Banner -->
+<section class="quick-booking-banner">
+    <div class="container">
+        <div class="booking-banner-content">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2><i class="fas fa-calendar-check"></i> Book Your Appointment Today</h2>
+                    <p>Connect with expert doctors instantly. Choose your specialist and schedule your visit.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="{{ url_for('register') }}" class="btn-custom btn-light-custom btn-lg">
+                        <i class="fas fa-calendar-plus"></i> Book Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Grid -->
+<section class="services-grid">
+    <div class="container">
+        <div class="section-intro">
+            <h2 class="section-heading">What We Offer</h2>
+            <p class="section-subheading">Comprehensive healthcare services designed for you</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="service-box">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h3>Expert Consultation</h3>
+                    <p>Connect with qualified doctors across multiple specializations</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="service-box">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-laptop-medical"></i>
+                    </div>
+                    <h3>Online Booking</h3>
+                    <p>Book appointments instantly from anywhere, anytime</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="service-box">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-file-medical-alt"></i>
+                    </div>
+                    <h3>Digital Records</h3>
+                    <p>Access your complete medical history on the go</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="service-box">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Privacy First</h3>
+                    <p>Your data is encrypted and completely secure</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Medical Departments -->
+<section class="medical-departments">
+    <div class="container">
+        <div class="section-intro">
+            <h2 class="section-heading">Medical Departments</h2>
+            <p class="section-subheading">Specialized care across various medical fields</p>
+        </div>
+        
+        <div class="departments-grid">
+            <div class="dept-item">
+                <div class="dept-icon-box">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <h3>Cardiology</h3>
+                <p>Heart & Cardiovascular Care</p>
+            </div>
+            
+            <div class="dept-item">
+                <div class="dept-icon-box">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>Neurology</h3>
+                <p>Brain & Nervous System</p>
+            </div>
+            
+            <div class="dept-item">
+                <div class="dept-icon-box">
+                    <i class="fas fa-bone"></i>
+                </div>
+                <h3>Orthopedics</h3>
+                <p>Bones & Joints</p>
+            </div>
+            
+            <div class="dept-item">
+                <div class="dept-icon-box">
+                    <i class="fas fa-baby"></i>
+                </div>
+                <h3>Pediatrics</h3>
+                <p>Children's Health</p>
+            </div>
+            
+            <div class="dept-item">
+                <div class="dept-icon-box">
+                    <i class="fas fa-spa"></i>
+                </div>
+                <h3>Dermatology</h3>
+                <p>Skin & Hair Care</p>
+            </div>
+            
+            <div class="dept-item">
+                <div class="dept-icon-box">
+                    <i class="fas fa-clinic-medical"></i>
+                </div>
+                <h3>General Medicine</h3>
+                <p>Primary Healthcare</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works -->
+<section class="how-it-works">
+    <div class="container">
+        <div class="section-intro">
+            <h2 class="section-heading">How It Works</h2>
+            <p class="section-subheading">Get started in three simple steps</p>
+        </div>
+        
+        <div class="steps-container">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h3>Create Account</h3>
+                <p>Sign up in seconds with your basic information</p>
+            </div>
+            
+            <div class="step-connector"></div>
+            
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>Find Doctor</h3>
+                <p>Browse specialists and choose your preferred doctor</p>
+            </div>
+            
+            <div class="step-connector"></div>
+            
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <h3>Book Appointment</h3>
+                <p>Select date & time, and you're all set!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Demo Credentials Section -->
+<section class="demo-credentials-section">
+    <div class="container">
+        <div class="section-intro">
+            <h2 class="section-heading">Demo Accounts</h2>
+            <p class="section-subheading">Try our system with these test accounts</p>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Admin Card -->
+            <div class="col-md-4">
+                <div class="credential-card admin-card">
+                    <div class="credential-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Admin Access</h3>
+                    <p class="credential-desc">Full system control and management</p>
+                    <div class="credential-details">
+                        <div class="credential-item">
+                            <span class="label">Username:</span>
+                            <span class="value">admin</span>
+                            <button class="copy-btn" onclick="copyText('admin')" title="Copy">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="credential-item">
+                            <span class="label">Password:</span>
+                            <span class="value">admin123</span>
+                            <button class="copy-btn" onclick="copyText('admin123')" title="Copy">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <a href="{{ url_for('login') }}" class="btn-credential">
+                        <i class="fas fa-sign-in-alt"></i> Login as Admin
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Doctor Card -->
+            <div class="col-md-4">
+                <div class="credential-card doctor-card">
+                    <div class="credential-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>Doctor Access</h3>
+                    <p class="credential-desc">Manage appointments and patients</p>
+                    <div class="credential-details">
+                        <div class="credential-item">
+                            <span class="label">Username:</span>
+                            <span class="value">dr.smith</span>
+                            <button class="copy-btn" onclick="copyText('dr.smith')" title="Copy">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="credential-item">
+                            <span class="label">Password:</span>
+                            <span class="value">doctor123</span>
+                            <button class="copy-btn" onclick="copyText('doctor123')" title="Copy">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="more-doctors">
+                        <small><i class="fas fa-info-circle"></i> More doctors: dr.johnson, dr.williams, dr.brown, dr.davis, dr.wilson</small>
+                    </div>
+                    <a href="{{ url_for('login') }}" class="btn-credential">
+                        <i class="fas fa-sign-in-alt"></i> Login as Doctor
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Patient Card -->
+            <div class="col-md-4">
+                <div class="credential-card patient-card">
+                    <div class="credential-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Patient Access</h3>
+                    <p class="credential-desc">Book appointments and view records</p>
+                    <div class="credential-details">
+                        <div class="credential-note">
+                            <i class="fas fa-user-plus"></i>
+                            <p>Create your own patient account to experience the full booking process</p>
+                        </div>
+                    </div>
+                    <a href="{{ url_for('register') }}" class="btn-credential">
+                        <i class="fas fa-user-plus"></i> Register as Patient
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="final-cta">
+    <div class="container">
+        <div class="cta-box">
+            <h2>Ready to Take Control of Your Health?</h2>
+            <p>Join our platform today and experience healthcare made simple</p>
+            <a href="{{ url_for('register') }}" class="btn-custom btn-light-custom">
+                Create Your Account
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Floating Book Button -->
+<a href="{{ url_for('register') }}" class="floating-book-btn" title="Book Appointment">
+    <i class="fas fa-calendar-plus"></i>
+    <span>Book Now</span>
+</a>
+
+<!-- Footer -->
+<footer class="unique-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h3><i class="fas fa-hospital"></i> HealthCare HMS</h3>
+                <p>Your trusted partner in managing health and wellness. We provide comprehensive healthcare solutions with care and compassion.</p>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <h4>Quick Access</h4>
+                <ul class="footer-menu">
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                </ul>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <h4>Get in Touch</h4>
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> support@healthcare.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Medical Plaza, Health City</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom-bar">
+            <p>&copy; 2025 Hospital Management System. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Doctors{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="dashboard-header d-flex justify-content-between align-items-center">
+        <div>
+            <h1 class="dashboard-title">
+                <i class="fas fa-user-md"></i> Manage Doctors
+            </h1>
+        </div>
+        <a href="{{ url_for('admin_add_doctor') }}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Add Doctor
+        </a>
+    </div>
+    
+    <div class="card">
+        <div class="card-body">
+            <div class="search-bar mb-4">
+                <i class="fas fa-search search-icon"></i>
+                <form method="GET" action="{{ url_for('admin_doctors') }}">
+                    <input type="text" class="form-control" name="search" 
+                           placeholder="Search by name or specialization..." 
+                           value="{{ search }}">
+                </form>
+            </div>
+            
+            {% if doctors %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Department</th>
+                            <th>Specialization</th>
+                            <th>Experience</th>
+                            <th>Fee</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for doctor in doctors %}
+                        <tr>
+                            <td>{{ doctor.id }}</td>
+                            <td>{{ doctor.user.full_name }}</td>
+                            <td>{{ doctor.user.email }}</td>
+                            <td>{{ doctor.department.name }}</td>
+                            <td>{{ doctor.specialization }}</td>
+                            <td>{{ doctor.experience_years }} years</td>
+                            <td>${{ doctor.consultation_fee }}</td>
+                            <td>
+                                {% if doctor.user.is_active %}
+                                <span class="badge bg-success">Active</span>
+                                {% else %}
+                                <span class="badge bg-danger">Inactive</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{{ url_for('admin_edit_doctor', id=doctor.id) }}" 
+                                   class="btn btn-sm btn-warning">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                {% if doctor.user.is_active %}
+                                <a href="{{ url_for('admin_delete_doctor', id=doctor.id) }}" 
+                                   class="btn btn-sm btn-danger"
+                                   onclick="return confirmDelete('Are you sure you want to deactivate this doctor?')">
+                                    <i class="fas fa-ban"></i>
+                                </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="text-muted text-center">No doctors found</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+========================================
+PUSH CODE TO GITHUB - EXACT COMMANDS
+========================================
+
+STEP 1: Open CMD (NOT PowerShell!)
+-----------------------------------
+Press Windows Key + R
+Type: cmd
+Press Enter
+
+STEP 2: Navigate to Project
+----------------------------
+cd "C:\hosipital final"
+
+STEP 3: Configure Git (First Time Only)
+----------------------------------------
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+
+Replace with YOUR actual name and email!
+
+STEP 4: Push to GitHub
+-----------------------
+git add .
+git commit -m "Initial commit - Hospital Management System"
+git push -u origin main
+
+STEP 5: Enter Credentials
+--------------------------
+Username: misterperfect9737-arch
+Password: [Your GitHub Personal Access Token]
+
+========================================
+IF YOU DON'T HAVE ACCESS TOKEN:
+========================================
+
+1. Go to: https://github.com/settings/tokens
+2. Click "Generate new token (classic)"
+3. Name: "Hospital Project"
+4. Check: ✅ repo
+5. Click "Generate token"
+6. COPY THE TOKEN
+7. Use as password when pushing
+
+========================================
+VERIFY IT WORKED:
+========================================
+
+Go to: https://github.com/misterperfect9737-arch/hospital-management-system
+
+You should see all your files!
+
+========================================
+DONE! ✅
+========================================

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}My Availability{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="dashboard-header">
+        <h1 class="dashboard-title"><i class="fas fa-clock"></i> Manage Availability</h1>
+    </div>
+    <div class="card mb-3">
+        <div class="card-header">Set Availability</div>
+        <div class="card-body">
+            <form method="POST" class="needs-validation" novalidate>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Date *</label>
+                        <input type="date" class="form-control" name="date" required id="availDate">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Start Time *</label>
+                        <input type="time" class="form-control" name="start_time" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">End Time *</label>
+                        <input type="time" class="form-control" name="end_time" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Availability</button>
+            </form>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">Current Availability (Next 7 Days)</div>
+        <div class="card-body">
+            {% if availabilities %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for avail in availabilities %}
+                        <tr>
+                            <td>{{ avail.date.strftime('%A, %B %d, %Y') }}</td>
+                            <td>{{ avail.start_time.strftime('%I:%M %p') }}</td>
+                            <td>{{ avail.end_time.strftime('%I:%M %p') }}</td>
+                            <td>
+                                {% if avail.is_available %}
+                                <span class="badge bg-success">Available</span>
+                                {% else %}
+                                <span class="badge bg-danger">Unavailable</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="text-muted text-center">No availability set for the next 7 days</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<script>
+setMinDate('availDate');
+</script>
+{% endblock %}

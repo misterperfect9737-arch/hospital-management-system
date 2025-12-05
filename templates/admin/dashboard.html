@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="dashboard-header">
+        <h1 class="dashboard-title">
+            <i class="fas fa-tachometer-alt"></i> Admin Dashboard
+        </h1>
+        <p class="text-muted" id="live-clock"></p>
+    </div>
+    
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="stat-card">
+                <div class="stat-icon text-primary">
+                    <i class="fas fa-user-md"></i>
+                </div>
+                <div class="stat-number">{{ total_doctors }}</div>
+                <div class="stat-label">Total Doctors</div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-3">
+            <div class="stat-card">
+                <div class="stat-icon text-success">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-number">{{ total_patients }}</div>
+                <div class="stat-label">Total Patients</div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-3">
+            <div class="stat-card">
+                <div class="stat-icon text-info">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="stat-number">{{ total_appointments }}</div>
+                <div class="stat-label">Total Appointments</div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-3">
+            <div class="stat-card">
+                <div class="stat-icon text-warning">
+                    <i class="fas fa-calendar-day"></i>
+                </div>
+                <div class="stat-number">{{ today_appointments }}</div>
+                <div class="stat-label">Today's Appointments</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-clock"></i> Recent Appointments
+                </div>
+                <div class="card-body">
+                    {% if recent_appointments %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Patient</th>
+                                    <th>Doctor</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for appointment in recent_appointments %}
+                                <tr>
+                                    <td>{{ appointment.id }}</td>
+                                    <td>{{ appointment.patient.user.full_name }}</td>
+                                    <td>{{ appointment.doctor.user.full_name }}</td>
+                                    <td>{{ appointment.appointment_date.strftime('%Y-%m-%d') }}</td>
+                                    <td>{{ appointment.appointment_time.strftime('%H:%M') }}</td>
+                                    <td>
+                                        <span class="badge status-{{ appointment.status.lower() }}">
+                                            {{ appointment.status }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <p class="text-muted text-center">No appointments found</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
