@@ -1,0 +1,50 @@
+========================================
+🎯 VIVA COMMANDS - COPY & PASTE
+========================================
+
+NAVIGATE TO PROJECT:
+--------------------
+cd "C:\hosipital final"
+
+CHECKSUM (if proctor asks):
+---------------------------
+py check.py
+
+INSTALL PACKAGES:
+-----------------
+py -m pip install -r requirements.txt
+
+RUN APPLICATION:
+----------------
+py app.py
+
+OPEN BROWSER:
+-------------
+http://localhost:5000
+
+STOP APPLICATION:
+-----------------
+Press: Ctrl + C in CMD
+
+========================================
+🔐 LOGIN CREDENTIALS
+========================================
+
+Admin:
+Username: admin
+Password: admin123
+
+Doctor:
+Username: dr.smith
+Password: doctor123
+
+Patient:
+Register during demo
+
+========================================
+📊 YOUR CHECKSUM
+========================================
+
+197719aea1f2bf3824e3d09d0c41b812
+
+========================================

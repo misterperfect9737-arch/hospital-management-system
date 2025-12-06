@@ -5,68 +5,20 @@
 From START to FINISH - Everything you need!
 
 ========================================
-📅 BEFORE VIVA DAY (DO THIS NOW!)
+📅 BEFORE VIVA DAY - CHECKLIST
 ========================================
 
-TASK 1: PUSH TO GITHUB (15 minutes)
-------------------------------------
-1. Open CMD
-2. Type these commands one by one:
-
-cd "C:\hosipital final"
-git config --global user.name "Your Name"
-git config --global user.email "your.email@example.com"
-git add .
-git commit -m "Hospital Management System"
-git push -u origin main
-
-3. If asks for password, use GitHub Personal Access Token
-4. Go to your GitHub repo in browser
-5. Verify all files are there
-
-TASK 2: ADD COLLABORATORS (5 minutes)
---------------------------------------
-1. Go to your GitHub repository
-2. Click "Settings" tab
-3. Click "Collaborators" (left side)
-4. Click "Add people"
-5. Add AppDev team members
-6. They will receive email invitation
-
-TASK 3: UPDATE PROJECT REPORT (5 minutes)
-------------------------------------------
-1. Open PROJECT_REPORT.md file
-2. Add your name and roll number
-3. Add AI usage percentage (be honest!)
-4. Add your GitHub repository link
-5. Save file
-
-TASK 4: TEST YOUR APP (10 minutes)
------------------------------------
-1. Open CMD
-2. Type:
-   cd "C:\hosipital final"
-   py -m pip install -r requirements.txt
-   py app.py
-
-3. Open browser: http://localhost:5000
-4. Test everything:
-   - Login as admin (admin/admin123)
-   - Login as doctor (dr.smith/doctor123)
-   - Register as patient
-   - Book appointment
-   - Complete appointment
-
-5. If everything works = YOU'RE READY! ✅
-
-TASK 5: PREPARE FOR VIVA DAY
------------------------------
+□ Push code to GitHub
+□ Add AppDev team as collaborators
+□ Update PROJECT_REPORT.md (name, roll number, AI %)
+□ Test app works (py app.py)
 □ Test camera and microphone
 □ Keep phone camera ready as backup
-□ Close ALL AI tools (Kiro, ChatGPT, etc.)
-□ Keep student ID card ready (open in browser)
+□ Close ALL AI tools (Kiro, ChatGPT)
+□ Keep student ID card ready
 □ Keep GitHub repository open in browser
-□ Read this guide 2-3 times
+□ Keep VIVA_COMMANDS.txt open
+□ Read this guide once
 □ Sleep well!
 
 ========================================
