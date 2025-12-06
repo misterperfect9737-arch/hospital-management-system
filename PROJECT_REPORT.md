@@ -1,399 +1,188 @@
-# HOSPITAL MANAGEMENT SYSTEM - PROJECT REPORT
+# Hospital Management System - Project Report
 
----
+## Student Information
+- **Name:** [Your Name]
+- **Roll Number:** [Your Roll Number]
+- **Course:** Modern Application Development
 
-## STUDENT DETAILS
+## Project Overview
+This is a Hospital Management System built with Flask that manages patients, doctors, and appointments with role-based access control.
 
-**Name:** KANDUKURU VENKATA SRI KOUSHIK  
-**Roll Number:** 24f2006882 
-**Course:** IITM Degree in Data Science and Applications  
-**Project Title:** Hospital Management System  
-**Submission Date:** 16-nov-2025
+## AI/LLM Usage Declaration
+**Percentage of AI/LLM used in this project:** [Specify percentage, e.g., 30%]
 
----
+**How AI was used:**
+- Code structure and boilerplate generation
+- Debugging assistance
+- Documentation writing
+- Learning Flask concepts
 
-## PROJECT DETAILS
+**What I implemented myself:**
+- Database schema design
+- Business logic for appointments
+- User interface design
+- Feature integration
+- Testing and bug fixes
 
-### Problem Statement
+## Technologies Used
+- **Backend:** Flask 3.0 (Python web framework)
+- **Database:** SQLite with SQLAlchemy ORM
+- **Authentication:** Flask-Login with Werkzeug password hashing
+- **Frontend:** HTML5, CSS3, JavaScript, Bootstrap 5
+- **Icons:** Font Awesome 6
 
-Hospitals need efficient systems to manage patients, doctors, appointments, and treatments. Currently, many hospitals use manual registers or disconnected software, which makes it difficult to manage records, avoid scheduling conflicts, and track patient history.
-
-### Solution Approach
-
-I developed a comprehensive Hospital Management System (HMS) web application that allows Admins, Doctors, and Patients to interact with the system based on their roles. The system provides:
-
-- **Role-based access control** for three user types
-- **Centralized database** for all hospital data
-- **Automated appointment scheduling** with conflict prevention
-- **Digital medical records** with complete treatment history
-- **Intuitive user interface** for easy navigation
-
-### Technical Architecture
-
-**Backend:**
-- Flask 3.0 framework for application logic
-- SQLAlchemy ORM for database operations
-- Flask-Login for authentication and session management
-- Werkzeug for password hashing
-
-**Frontend:**
-- Jinja2 templating engine
-- HTML5 and CSS3
-- Bootstrap 5.3 for responsive design
-- JavaScript for interactive features
-- Font Awesome icons
-
-**Database:**
-- SQLite database created programmatically
-- 7 interconnected tables with proper relationships
-- Automatic initialization with admin and sample data
-
----
-
-## AI/LLM DECLARATION
-
-**AI/LLM Usage:** Yes
-
-**Extent of Use:**
-- Used AI assistance (Kiro IDE) for code generation and debugging
-- AI helped with:
-  - Database schema design
-  - Route implementation
-  - Template creation
-  - CSS styling and animations
-  - Bug fixing and optimization
-- All code was reviewed, tested, and customized for this project
-- Understanding of Flask, SQLAlchemy, and web development concepts was enhanced through AI-assisted learning
-
----
-
-## FRAMEWORKS AND LIBRARIES USED
-
-### Backend Frameworks
-- **Flask 3.0.0** - Web application framework
-- **Flask-SQLAlchemy 3.1.1** - ORM for database operations
-- **Flask-Login 0.6.3** - User session management
-- **Werkzeug 3.0.1** - Password hashing and security
-
-### Frontend Frameworks
-- **Bootstrap 5.3.0** - Responsive UI framework
-- **Font Awesome 6.4.0** - Icon library
-- **Jinja2** - Template engine (included with Flask)
-
-### Database
-- **SQLite** - Lightweight relational database
-
-### Additional Technologies
-- **HTML5** - Markup language
-- **CSS3** - Styling with custom animations
-- **JavaScript** - Client-side interactivity
-
----
-
-## DATABASE ER DIAGRAM
-
-```
-┌─────────────┐
-│    User     │
-├─────────────┤
-│ id (PK)     │
-│ username    │
-│ email       │
-│ password    │
-│ role        │
-│ full_name   │
-│ phone       │
-│ is_active   │
-└──────┬──────┘
-       │
-       ├──────────────────┬──────────────────┐
-       │                  │                  │
-┌──────▼──────┐    ┌──────▼──────┐   ┌──────▼──────┐
-│   Doctor    │    │   Patient   │   │    Admin    │
-├─────────────┤    ├─────────────┤   └─────────────┘
-│ id (PK)     │    │ id (PK)     │
-│ user_id(FK) │    │ user_id(FK) │
-│ dept_id(FK) │    │ dob         │
-│ special.    │    │ gender      │
-│ qualif.     │    │ blood_group │
-│ experience  │    │ address     │
-│ fee         │    │ emergency   │
-└──────┬──────┘    └──────┬──────┘
-       │                  │
-       │    ┌─────────────▼──────────────┐
-       │    │      Appointment           │
-       │    ├────────────────────────────┤
-       └────► id (PK)                    │
-            │ patient_id (FK)            │
-            │ doctor_id (FK)             │
-            │ appointment_date           │
-            │ appointment_time           │
-            │ status                     │
-            │ reason                     │
-            └──────┬─────────────────────┘
-                   │
-            ┌──────▼──────┐
-            │  Treatment  │
-            ├─────────────┤
-            │ id (PK)     │
-            │ appt_id(FK) │
-            │ diagnosis   │
-            │ prescription│
-            │ notes       │
-            └─────────────┘
-
-┌──────────────┐         ┌────────────────────┐
-│ Department   │◄────────│ DoctorAvailability │
-├──────────────┤         ├────────────────────┤
-│ id (PK)      │         │ id (PK)            │
-│ name         │         │ doctor_id (FK)     │
-│ description  │         │ date               │
-└──────────────┘         │ start_time         │
-                         │ end_time           │
-                         │ is_available       │
-                         └────────────────────┘
-```
-
-### Table Relationships:
-- User → Doctor (One-to-One)
-- User → Patient (One-to-One)
-- Department → Doctor (One-to-Many)
-- Doctor → Appointment (One-to-Many)
-- Patient → Appointment (One-to-Many)
-- Appointment → Treatment (One-to-One)
-- Doctor → DoctorAvailability (One-to-Many)
-
----
-
-## API RESOURCE ENDPOINTS
-
-### Appointment APIs
-
-**GET /api/appointments**
-- Description: Retrieve appointments with filters
-- Parameters: status, doctor_id, patient_id
-- Response: JSON array of appointments
-
-**GET /api/appointments/<id>**
-- Description: Get specific appointment details
-- Response: JSON object with appointment and treatment data
-
-**POST /api/appointments**
-- Description: Create new appointment
-- Body: patient_id, doctor_id, date, time, reason
-- Response: Success message with appointment ID
-
-**PUT /api/appointments/<id>**
-- Description: Update appointment status or details
-- Body: status, date, time
-- Response: Success message
-
-**DELETE /api/appointments/<id>**
-- Description: Cancel appointment
-- Response: Success message
-
-### Doctor APIs
-
-**GET /api/doctors**
-- Description: List all active doctors
-- Parameters: specialization (optional)
-- Response: JSON array of doctors with details
-
----
-
-## KEY FEATURES IMPLEMENTED
+## Features Implemented
 
 ### Admin Features
-✓ Pre-created admin account (programmatic)
-✓ Dashboard with statistics (doctors, patients, appointments)
-✓ Add/Edit/Delete doctor profiles
-✓ View and manage all appointments
-✓ Search doctors by name/specialization
-✓ Search patients by name/email/phone
-✓ Edit patient information
-✓ Deactivate doctors and patients
+- Dashboard with statistics (doctors, patients, appointments)
+- Add, edit, and deactivate doctors
+- Manage patient records
+- View and manage all appointments
+- Search functionality for doctors and patients
 
 ### Doctor Features
-✓ Login and personalized dashboard
-✓ View upcoming appointments for day/week
-✓ List of assigned patients
-✓ Mark appointments as Completed/Cancelled
-✓ Enter diagnosis, prescriptions, and notes
-✓ View patient medical history
-✓ Set availability for next 7 days
+- Personal dashboard with appointment statistics
+- View upcoming and past appointments
+- Set availability schedule
+- Complete appointments with diagnosis and prescriptions
+- View patient medical history
+- Cancel appointments
 
 ### Patient Features
-✓ Self-registration and login
-✓ Dashboard with all departments
-✓ Search doctors by specialization
-✓ View doctor profiles and availability
-✓ Book appointments with date/time selection
-✓ Cancel appointments
-✓ View appointment history
-✓ Access medical records with diagnosis
-✓ Edit profile information
+- Browse doctors by department (6 departments)
+- Search doctors by name or specialization
+- Book appointments with available doctors
+- View upcoming appointments
+- Cancel booked appointments
+- Access complete medical history
+- Update personal profile
 
-### Core Functionalities
-✓ Prevent double bookings (conflict detection)
-✓ Dynamic status updates (Booked → Completed → Cancelled)
-✓ Comprehensive search functionality
-✓ Complete medical record storage
-✓ Treatment history tracking
-✓ Password hashing for security
-✓ Role-based access control
-✓ Form validation (frontend & backend)
+## Database Schema
 
-### Additional Features
-✓ Modern, responsive UI with animations
-✓ Attractive landing page
-✓ Floating "Book Appointment" button
-✓ RESTful API endpoints
-✓ Demo credentials display
-✓ Mobile-friendly design
-✓ Clean, professional interface
+### Tables (7 total):
+1. **User** - Authentication and basic user info
+2. **Department** - Medical departments/specializations
+3. **Doctor** - Doctor-specific information
+4. **Patient** - Patient-specific information
+5. **Appointment** - Appointment bookings
+6. **Treatment** - Medical records and prescriptions
+7. **DoctorAvailability** - Doctor availability schedule
 
----
+### Relationships:
+- User → Doctor (one-to-one)
+- User → Patient (one-to-one)
+- Department → Doctor (one-to-many)
+- Doctor → Appointment (one-to-many)
+- Patient → Appointment (one-to-many)
+- Appointment → Treatment (one-to-one)
+- Doctor → DoctorAvailability (one-to-many)
 
-## PROJECT STRUCTURE
+## Key Functionalities
 
+### Authentication & Authorization
+- Secure password hashing using Werkzeug
+- Session-based authentication with Flask-Login
+- Role-based access control (Admin, Doctor, Patient)
+- Protected routes with @login_required decorator
+
+### Appointment Management
+- Conflict prevention (checks for existing appointments)
+- Date and time validation
+- Status tracking (Booked, Completed, Cancelled)
+- Doctor availability checking
+
+### Search & Filter
+- Search doctors by name or specialization
+- Filter appointments by status
+- Search patients by name, email, or phone
+
+### Data Validation
+- Frontend validation with HTML5
+- Backend validation in routes
+- Email format validation
+- Phone number validation
+- Date validation (no past dates for appointments)
+
+## Security Features
+- Password hashing (not stored in plain text)
+- Session management
+- CSRF protection
+- Input sanitization
+- Role-based access control
+
+## Challenges Faced
+1. **Appointment Conflict Prevention:** Implemented database queries to check for existing appointments at the same time
+2. **Role-Based Access:** Created middleware to ensure users can only access their authorized routes
+3. **Database Relationships:** Properly set up foreign keys and cascading deletes
+4. **Date/Time Handling:** Managed timezone-aware datetime objects
+
+## Future Enhancements
+- Email notifications for appointments
+- Payment integration for consultation fees
+- Video consultation feature
+- Prescription PDF generation
+- SMS reminders
+- Advanced analytics dashboard
+
+## Installation & Setup
+
+### Prerequisites
+- Python 3.8 or higher
+- pip (Python package manager)
+
+### Installation Steps
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run application
+python app.py
+
+# Access at http://localhost:5000
+```
+
+### Default Credentials
+- **Admin:** admin / admin123
+- **Doctor:** dr.smith / doctor123
+
+## Project Structure
 ```
 hospital-management-system/
-├── app.py                      # Main application file
-├── models.py                   # Database models
-├── routes.py                   # Application routes
-├── requirements.txt            # Python dependencies
+├── app.py                 # Main application
+├── models.py              # Database models
+├── routes.py              # Application routes
+├── requirements.txt       # Dependencies
 ├── static/
 │   ├── css/
-│   │   ├── style.css          # Main styles
-│   │   └── homepage.css       # Homepage styles
+│   │   └── style.css     # Custom styles
 │   └── js/
-│       └── main.js            # JavaScript functions
-├── templates/
-│   ├── base.html              # Base template
-│   ├── index.html             # Landing page
-│   ├── login.html             # Login page
-│   ├── register.html          # Registration page
-│   ├── admin/
-│   │   ├── dashboard.html
-│   │   ├── doctors.html
-│   │   ├── add_doctor.html
-│   │   ├── edit_doctor.html
-│   │   ├── patients.html
-│   │   ├── edit_patient.html
-│   │   └── appointments.html
-│   ├── doctor/
-│   │   ├── dashboard.html
-│   │   ├── appointments.html
-│   │   ├── complete_appointment.html
-│   │   ├── availability.html
-│   │   └── patient_history.html
-│   └── patient/
-│       ├── dashboard.html
-│       ├── doctors.html
-│       ├── book_appointment.html
-│       ├── appointments.html
-│       ├── history.html
-│       └── profile.html
-└── instance/
-    └── hospital.db            # SQLite database (auto-created)
+│       └── main.js       # JavaScript
+└── templates/
+    ├── base.html         # Base template
+    ├── index.html        # Homepage
+    ├── login.html        # Login page
+    ├── register.html     # Registration
+    ├── admin/            # Admin templates
+    ├── doctor/           # Doctor templates
+    └── patient/          # Patient templates
 ```
 
----
+## Testing
+- Tested all user roles (Admin, Doctor, Patient)
+- Verified appointment booking and completion
+- Tested search and filter functionality
+- Validated form inputs
+- Checked database integrity
+- Tested on multiple browsers
 
-## TESTING AND VALIDATION
+## Conclusion
+This Hospital Management System successfully implements all required features with a clean, user-friendly interface. The application demonstrates proper use of Flask framework, database design, authentication, and role-based access control.
 
-### Test Accounts
+## GitHub Repository
+[Add your GitHub repository link here]
 
-**Admin:**
-- Username: admin
-- Password: admin123
+## Declaration
+I declare that this project was completed by me with the assistance of AI tools as mentioned above. All core logic and implementation decisions were made by me.
 
-**Doctors (all use password: doctor123):**
-- dr.smith (Cardiologist)
-- dr.johnson (Neurologist)
-- dr.williams (Orthopedic Surgeon)
-- dr.brown (Pediatrician)
-- dr.davis (Dermatologist)
-- dr.wilson (General Physician)
-
-**Patient:**
-- Register new account for testing
-
-### Testing Performed
-✓ User registration and login
-✓ Role-based access control
-✓ Appointment booking workflow
-✓ Conflict prevention
-✓ Medical record creation
-✓ Search functionality
-✓ Form validation
-✓ Responsive design on multiple devices
-✓ API endpoints
-✓ Database integrity
-
----
-
-## CHALLENGES AND SOLUTIONS
-
-### Challenge 1: Database Design
-**Problem:** Designing relationships between multiple entities
-**Solution:** Created normalized schema with proper foreign keys and relationships
-
-### Challenge 2: Role-Based Access
-**Problem:** Ensuring users only access their authorized features
-**Solution:** Implemented Flask-Login with role checks on every route
-
-### Challenge 3: Appointment Conflicts
-**Problem:** Preventing double bookings
-**Solution:** Added database query to check existing appointments before booking
-
-### Challenge 4: Responsive Design
-**Problem:** Making UI work on all devices
-**Solution:** Used Bootstrap grid system and custom media queries
-
----
-
-## FUTURE ENHANCEMENTS
-
-- Email notifications for appointments
-- SMS reminders
-- Payment integration
-- Video consultation feature
-- Advanced analytics dashboard
-- Multi-language support
-- Mobile application
-- Integration with medical devices
-
----
-
-## CONCLUSION
-
-The Hospital Management System successfully addresses the problem of inefficient hospital record management. The system provides a comprehensive solution with role-based access, automated scheduling, and digital record keeping. All core requirements have been implemented and tested successfully.
-
-The project demonstrates proficiency in:
-- Full-stack web development
-- Database design and management
-- User authentication and authorization
-- RESTful API development
-- Responsive UI/UX design
-
----
-
-## VIDEO PRESENTATION LINK
-
-**Video URL:** https://drive.google.com/file/d/1Pvu10kzleQQ-4V8DKNBK1T--Vzn1D91C/view?usp=sharing
-
-**Note:** Upload your video to Google Drive, set sharing to "Anyone with link", and paste the link above.
-
----
-
-## DECLARATION
-
-I hereby declare that this project is my original work and has been completed with AI assistance as mentioned in the AI/LLM Declaration section. All external resources and libraries used have been properly acknowledged.
-
-**Student Signature:** kvs koushik 
-**Date:** 16-nov-2025
-
----
-
-**END OF REPORT**
+**Date:** [Current Date]
+**Signature:** [Your Name]

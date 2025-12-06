@@ -1,0 +1,79 @@
+========================================
+QUICK VIVA REFERENCE - KEEP THIS OPEN!
+========================================
+
+⏰ TIMELINE:
+0-2 min:   Show GitHub & ID
+2-10 min:  Run application
+10-25 min: Demo features
+25-30 min: Questions
+
+========================================
+🔐 CREDENTIALS (MEMORIZE!):
+========================================
+Admin: admin / admin123
+Doctor: dr.smith / doctor123
+Patient: Register during demo
+
+========================================
+💻 COMMANDS (COPY-PASTE):
+========================================
+cd "C:\hosipital final"
+python -m pip install -r requirements.txt
+python app.py
+
+URL: http://localhost:5000
+
+========================================
+🎯 DEMO FLOW:
+========================================
+
+ADMIN (5 min):
+□ Login → Dashboard → Doctors → Patients → Appointments
+
+DOCTOR (5 min):
+□ Login → Dashboard → Appointments → Complete one → Availability
+
+PATIENT (5 min):
+□ Register → Login → Find Doctors → Book Appointment → My Appointments
+
+========================================
+💬 MAGIC PHRASES:
+========================================
+"This is my Hospital Management System"
+"Let me demonstrate this feature"
+"Yes, I can show you that"
+"This is working as expected"
+"Thank you for the question"
+
+========================================
+❓ TOP 5 QUESTIONS:
+========================================
+
+Q: What technology did you use?
+A: Flask, SQLAlchemy, SQLite, Bootstrap
+
+Q: How many tables?
+A: 7 tables
+
+Q: How does authentication work?
+A: Flask-Login with password hashing
+
+Q: How to prevent double booking?
+A: Check database before booking
+
+Q: What is Flask?
+A: Python web framework
+
+========================================
+😰 IF PROBLEM:
+========================================
+- Stay calm
+- Say: "Let me check"
+- Restart app if needed
+- Be honest if you don't know
+
+========================================
+✅ YOU'RE READY!
+========================================
+Speak clearly | Stay calm | Smile | You got this!
